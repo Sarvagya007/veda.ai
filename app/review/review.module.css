@@ -1,0 +1,503 @@
+.page {
+  min-height: 100vh;
+  background: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+}
+
+.loading {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  color: var(--color-text-secondary);
+}
+
+/* ─── Nav ──────────────────────────────────────────────────────── */
+.navLeft {
+  display: flex;
+  align-items: center;
+}
+
+.navBackBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  color: var(--color-text-primary);
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.navBackBtn:hover {
+  opacity: 0.8;
+}
+
+.navRight {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* ─── Mobile Tabs ──────────────────────────────────────────────── */
+.mobileTabs {
+  display: none;
+  padding: 16px;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.segmentedControl {
+  display: flex;
+  background: var(--color-surface-2);
+  border-radius: var(--radius-full);
+  padding: 4px;
+}
+
+.segmentBtn {
+  flex: 1;
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  border: none;
+  background: none;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.segmentActive {
+  background: #333;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* ─── Layout ───────────────────────────────────────────────────── */
+.layout {
+  display: grid;
+  grid-template-columns: 480px 1fr;
+  height: calc(100vh - 60px);
+  overflow: hidden;
+}
+
+/* ─── Panel commons ────────────────────────────────────────────── */
+.panelHeader {
+  padding: 16px 24px;
+  background: var(--color-surface);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.panelTitle {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 2px;
+}
+
+.panelSubtitle {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+.scoreHighlight {
+  font-weight: 800;
+  color: var(--color-primary);
+}
+
+.expandAllBtn {
+  background: white;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ─── Left Panel ───────────────────────────────────────────────── */
+.leftPanel {
+  background: #f7f7f7;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-right: 1px solid var(--color-border);
+}
+
+.questionList {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ─── Question Item (Accordion) ────────────────────────────────── */
+.questionItem {
+  background: white;
+  border-radius: 16px;
+  padding: 16px;
+  border: 2px solid transparent;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.questionItem:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.questionItemExpanded {
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 16px rgba(240, 90, 40, 0.15);
+}
+
+.questionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.questionNumWrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  flex: 1;
+}
+
+.questionBadgeGroup {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.questionNumBadge {
+  width: 28px;
+  height: 28px;
+  background: #444;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.questionSubNum {
+  font-size: 14px;
+  font-weight: 700;
+  color: #333;
+  margin-top: 2px;
+}
+
+.questionText {
+  font-size: 13px;
+  color: #111;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.questionStem {
+  margin-bottom: 8px;
+}
+
+/* ─── OR Options ───────────────────────────────────────────────── */
+.orOptionsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.orDivider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #999;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.orDivider::before,
+.orDivider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px dashed #ddd;
+}
+
+.orDivider::before {
+  margin-right: 12px;
+}
+
+.orDivider::after {
+  margin-left: 12px;
+}
+
+.orOption {
+  position: relative;
+  padding: 12px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  background: #fafafa;
+  transition: all 0.2s;
+}
+
+.orOptionMapped {
+  border-color: var(--color-primary);
+  background: #fff5f2;
+  /* extremely light tint of primary color */
+}
+
+.orOptionUnmapped {
+  opacity: 0.6;
+  background: #f5f5f5;
+  border-color: #f0f0f0;
+}
+
+.mappedBadge {
+  position: absolute;
+  top: -8px;
+  right: 12px;
+  background: var(--color-primary);
+  color: white;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 2px 4px rgba(240, 90, 40, 0.2);
+}
+
+.questionRight {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.scorePill {
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.scoreGreen {
+  background: #ecfdf5;
+  /* Tailwind green-50 */
+  color: #059669;
+  /* Tailwind green-600 */
+}
+
+.scoreRed {
+  background: #fef2f2;
+  /* Tailwind red-50 */
+  color: #dc2626;
+  /* Tailwind red-600 */
+}
+
+.scoreOrange {
+  background: #fff7ed;
+  /* Tailwind orange-50 */
+  color: #ea580c;
+  /* Tailwind orange-600 */
+}
+
+.chevron {
+  color: #888;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  background: #f5f5f5;
+}
+
+.feedbackContainer {
+  margin-top: 16px;
+  background: #f9f9f9;
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid #eee;
+}
+
+.feedbackLabel {
+  font-size: 12px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.feedbackText {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* ─── Center Panel / Viewer ────────────────────────────────────── */
+.centerPanel {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--color-bg);
+}
+
+.viewer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.viewerHeader {
+  background: #333;
+  color: white;
+  padding: 12px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.viewerTitle {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.viewerControls {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.zoomControl,
+.pageControl {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 4px 8px;
+  border-radius: var(--radius-md);
+}
+
+.iconBtn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+}
+
+.iconBtn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.iconBtn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.zoomText,
+.pageText {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.imageContainer {
+  flex: 1;
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: #dcdcdc;
+  /* Match figma backdrop slightly */
+  padding: 24px;
+}
+
+.imageWrapper {
+  position: relative;
+  display: inline-block;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.answerImage {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.highlightCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.noImage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #666;
+}
+
+/* ─── Responsive ───────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+    height: calc(100vh - 60px - 70px);
+    /* Account for mobile tabs */
+  }
+
+  .mobileTabs {
+    display: block;
+  }
+
+  .hideOnMobile {
+    display: none !important;
+  }
+
+  .showOnMobile {
+    display: flex !important;
+  }
+}
