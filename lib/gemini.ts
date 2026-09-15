@@ -23,7 +23,11 @@ function getApiKeys(): string[] {
   return keys;
 }
 
-const API_KEYS = getApiKeys();
+let _apiKeys: string[] | null = null;
+function getApiKeysLazy(): string[] {
+  if (!_apiKeys) _apiKeys = getApiKeys();
+  return _apiKeys;
+}
 let currentKeyIndex = 0;
 
 // Per-key daily request counter (resets at midnight UTC)
@@ -35,7 +39,7 @@ const RPD_WARN_AT = 450; // warn at 90% of daily limit
 // Fast model — thinking DISABLED (extraction calls don't need deep reasoning)
 // Disabling thinking saves 15-30s per call
 function getModel() {
-  const key = API_KEYS[currentKeyIndex];
+  const key = getApiKeysLazy()[currentKeyIndex];
   const genAI = new GoogleGenerativeAI(key);
   return genAI.getGenerativeModel({
     model: 'gemini-3.5-flash-lite',
@@ -46,7 +50,7 @@ function getModel() {
 
 // Grading model — minimal thinking budget (enough for accurate scoring, not slow)
 function getGradingModel() {
-  const key = API_KEYS[currentKeyIndex];
+  const key = getApiKeysLazy()[currentKeyIndex];
   const genAI = new GoogleGenerativeAI(key);
   return genAI.getGenerativeModel({
     model: 'gemini-3.5-flash-lite',
@@ -129,7 +133,7 @@ async function callWithRotation(
   let keyRotations = 0;
   let lastErrorMsg = '';
 
-  while (keyRotations <= API_KEYS.length) {
+  while (keyRotations <= getApiKeysLazy().length) {
     let retryCount = 0;
 
     while (retryCount < MAX_RETRIES_PER_KEY) {
@@ -164,10 +168,10 @@ async function callWithRotation(
     }
 
     // Key exhausted — rotate to next
-    if (API_KEYS.length > 1) {
-      currentKeyIndex = (currentKeyIndex + 1) % API_KEYS.length;
+    if (getApiKeysLazy().length > 1) {
+      currentKeyIndex = (currentKeyIndex + 1) % getApiKeysLazy().length;
       keyRotations++;
-      console.warn(`[Gemini] Rotating to key ${currentKeyIndex + 1}/${API_KEYS.length}`);
+      console.warn(`[Gemini] Rotating to key ${currentKeyIndex + 1}/${getApiKeysLazy().length}`);
       if (currentKeyIndex === startKeyIndex) break;
     } else {
       break;
@@ -175,7 +179,7 @@ async function callWithRotation(
   }
 
   throw new Error(
-    `All ${API_KEYS.length} Gemini API key(s) failed. Last API Error: ${lastErrorMsg}`
+    `All ${getApiKeysLazy().length} Gemini API key(s) failed. Last API Error: ${lastErrorMsg}`
   );
 }
 
